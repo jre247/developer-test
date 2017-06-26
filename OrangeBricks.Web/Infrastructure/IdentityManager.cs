@@ -8,7 +8,7 @@ using System.Web;
 
 namespace OrangeBricks.Web.Infrastructure
 {
-    public class IdentityManager
+    public class IdentityManager : IdentityManagerBase
     {
         public bool RoleExists(string name)
         {
