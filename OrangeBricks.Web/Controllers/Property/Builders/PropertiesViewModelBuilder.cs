@@ -48,25 +48,43 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
                 PropertyType = property.PropertyType,
-                Offer = GetPropertyOffer(property)
+                Offer = GetPropertyOffer(property),
+                Appointment = GetPropertyAppointment(property)
             };
         }
 
         private PropertyOfferViewModel GetPropertyOffer(Models.Property property)
         {
             var userId = _identityManager.GetLoggedInUserId();
-            var propertyOffer = new PropertyOfferViewModel();
+            var offerViewModel = new PropertyOfferViewModel();
 
             if (property.Offers == null)
-                return propertyOffer;
+                return offerViewModel;
 
             var offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
             if (offer == null)
-                return propertyOffer;
+                return offerViewModel;
 
-            propertyOffer.IsAccepted = offer.Status == OfferStatus.Accepted;
-            propertyOffer.AcceptDate = offer.UpdatedAt;
-            return propertyOffer;
+            offerViewModel.IsAccepted = offer.Status == OfferStatus.Accepted;
+            offerViewModel.AcceptDate = offer.UpdatedAt;
+            return offerViewModel;
+        }
+
+        private PropertyAppointmentViewModel GetPropertyAppointment(Models.Property property)
+        {
+            var userId = _identityManager.GetLoggedInUserId();
+            var appointmentViewModel = new PropertyAppointmentViewModel();
+
+            if (property.Appointments == null)
+                return appointmentViewModel;
+
+            var appointment = property.Appointments.FirstOrDefault(o => o.BuyerUserId == userId);
+            if (appointment == null)
+                return appointmentViewModel;
+
+            appointmentViewModel.IsAccepted = appointment.Status == AppointmentStatus.Accepted;
+            appointmentViewModel.AppointmentTime = appointment.UpdatedAt;
+            return appointmentViewModel;
         }
     }
 }
