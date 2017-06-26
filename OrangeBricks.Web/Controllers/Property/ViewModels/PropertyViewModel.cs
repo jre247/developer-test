@@ -12,5 +12,19 @@ namespace OrangeBricks.Web.Controllers.Property.ViewModels
         public int Id { get; set; }
         public bool IsListedForSale { get; set; }
         public PropertyOfferViewModel Offer { get; set; }
+        public PropertyAppointmentViewModel Appointment { get; set; }
+
+    }
+
+    public class PropertyOfferViewModel
+    {
+        public bool IsAccepted { get; set; }
+        public DateTime? AcceptDate { get; internal set; }
+    }
+
+    public class PropertyAppointmentViewModel
+    {
+        public DateTime? AppointmentTime { get; internal set; }
+        public bool IsAccepted { get; internal set; }
     }
 }
