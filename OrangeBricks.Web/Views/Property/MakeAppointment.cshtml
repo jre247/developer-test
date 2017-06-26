@@ -1,0 +1,26 @@
+﻿@model OrangeBricks.Web.Controllers.Property.ViewModels.MakeAppointmentViewModel
+
+@{
+    ViewBag.Title = "Make Appointment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Make Offer</h2>
+
+<p>When would you like to appointment for the @Model.PropertyType on @Model.StreetName?</p>
+
+@using (Html.BeginForm("MakeAppointment", "Property", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.AppointmentTime, "Appointment time", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Hidden("PropertyId", Model.PropertyId)
+            @Html.TextBoxFor(m => m.AppointmentTime, new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Make Appointment" />
+        </div>
+    </div>
+}
