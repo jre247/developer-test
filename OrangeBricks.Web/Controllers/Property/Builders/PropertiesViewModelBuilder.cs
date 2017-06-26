@@ -39,17 +39,6 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
 
         private static PropertyViewModel MapViewModel(Models.Property property)
         {
-            var identityManager = new IdentityManager();
-            Offer offer = null;      
-            var userId = identityManager.GetLoggedInUserId();
-            var propertyOffer = new PropertyOffer();
-
-            if (property.Offers != null) {
-                offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
-                propertyOffer.IsAccepted = offer.Status == OfferStatus.Accepted;
-                propertyOffer.AcceptDate = offer.UpdatedAt;
-            }
-
             return new PropertyViewModel
             {
                 Id = property.Id,
@@ -57,8 +46,27 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
                 PropertyType = property.PropertyType,
-                Offer = propertyOffer
+                Offer = getPropertyOffer(property)
             };
+        }
+
+        private static PropertyOfferViewModel getPropertyOffer(Models.Property property)
+        {
+            var identityManager = new IdentityManager();
+            var userId = identityManager.GetLoggedInUserId();
+            var propertyOffer = new PropertyOfferViewModel();
+
+            if (property.Offers != null)
+            {
+                var offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
+                if (offer != null)
+                {
+                    propertyOffer.IsAccepted = offer.Status == OfferStatus.Accepted;
+                    propertyOffer.AcceptDate = offer.UpdatedAt;
+                }
+            }
+
+            return propertyOffer;
         }
     }
 }
