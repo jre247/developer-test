@@ -56,16 +56,15 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
             var userId = identityManager.GetLoggedInUserId();
             var propertyOffer = new PropertyOfferViewModel();
 
-            if (property.Offers != null)
-            {
-                var offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
-                if (offer != null)
-                {
-                    propertyOffer.IsAccepted = offer.Status == OfferStatus.Accepted;
-                    propertyOffer.AcceptDate = offer.UpdatedAt;
-                }
-            }
+            if (property.Offers == null)
+                return propertyOffer;
 
+            var offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
+            if (offer == null)
+                return propertyOffer;
+
+            propertyOffer.IsAccepted = offer.Status == OfferStatus.Accepted;
+            propertyOffer.AcceptDate = offer.UpdatedAt;
             return propertyOffer;
         }
     }
