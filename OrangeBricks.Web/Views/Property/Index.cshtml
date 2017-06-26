@@ -41,5 +41,19 @@
         <a href="@Url.Action("MakeOffer", "Property", new { id = property.Id })" class="btn btn-primary">
             Make Offer
         </a>
+
+
+        if (property.Appointment.IsAccepted)
+        {
+            <div class="alert alert-success">
+                <strong>Appointment accepted at @property.Appointment.AppointmentTime</strong>
+            </div>
+        }
+        else
+        {
+            <a href="@Url.Action("MakeAppointment", "Property", new { id = property.Id })" class="btn btn-primary">
+                Make Appointment
+            </a>
+        }
     }
 }
