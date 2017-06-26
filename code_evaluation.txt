@@ -10,7 +10,7 @@ Action Items:
 			a) I upgraded NUnit to v3 from v2 in order to be able to run unit tests with Nunit3TestAdapter plugin
 			b) Note that NUnit3TestAdapter should be compatible with Visual Studio 2015.
 	B) How to use the website
-		1) Instructions explaining how to get set up as a buyer and seller. Although it is intuitive to click the Get Started button on the homepage to get started in a general sense, it's not immediately intuitive that you need to click this button in order to get set up as a buyer and seller specifically.
+		1) I would give a more detailed breakdown of how you can use the website as a buyer or seller. Maybe talk more about each role's perpsective of the website (i.e. which pages they can view and interact with).
 	C) Project structure
 		1) A detailed breakdown of the structure of the project.
 
