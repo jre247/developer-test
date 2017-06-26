@@ -33,5 +33,12 @@ namespace OrangeBricks.Web.Infrastructure
             var idResult = um.AddToRole(userId, roleName);
             return idResult.Succeeded;
         }
+
+        public string GetLoggedInUserId()
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ApplicationDbContext.Create()));
+            var user = manager.FindById(HttpContext.Current.User.Identity.GetUserId());
+            return user.Id;
+        }
     }
 }
