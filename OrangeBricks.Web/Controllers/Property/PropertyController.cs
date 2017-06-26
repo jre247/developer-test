@@ -7,6 +7,7 @@ using OrangeBricks.Web.Controllers.Property.Builders;
 using OrangeBricks.Web.Controllers.Property.Commands;
 using OrangeBricks.Web.Controllers.Property.ViewModels;
 using OrangeBricks.Web.Models;
+using OrangeBricks.Web.Infrastructure;
 
 namespace OrangeBricks.Web.Controllers.Property
 {
@@ -22,7 +23,7 @@ namespace OrangeBricks.Web.Controllers.Property
         [Authorize]
         public ActionResult Index(PropertiesQuery query)
         {
-            var builder = new PropertiesViewModelBuilder(_context);
+            var builder = new PropertiesViewModelBuilder(_context, new IdentityManager());
             var viewModel = builder.Build(query);
 
             return View(viewModel);
