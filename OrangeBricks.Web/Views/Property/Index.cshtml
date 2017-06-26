@@ -30,7 +30,16 @@
     <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
     <p>@property.Description</p>
 
-    <a href="@Url.Action("MakeOffer", "Property", new {id = property.Id})" class="btn btn-primary">
-        Make Offer
-    </a>
+    if (property.Offer.IsAccepted)
+    {
+        <div class="alert alert-success">
+            <strong>Offer accepted at @property.Offer.AcceptDate</strong>
+        </div>
+    }
+    else
+    {
+        <a href="@Url.Action("MakeOffer", "Property", new { id = property.Id })" class="btn btn-primary">
+            Make Offer
+        </a>
+    }
 }
