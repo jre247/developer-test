@@ -10,10 +10,12 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
     public class PropertiesViewModelBuilder
     {
         private readonly IOrangeBricksContext _context;
+        private readonly IdentityManagerBase _identityManager;
 
-        public PropertiesViewModelBuilder(IOrangeBricksContext context)
+        public PropertiesViewModelBuilder(IOrangeBricksContext context, IdentityManagerBase identityManager)
         {
             _context = context;
+            _identityManager = identityManager;
         }
 
         public PropertiesViewModel Build(PropertiesQuery query)
@@ -31,13 +33,13 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
             {
                 Properties = properties
                     .ToList()
-                    .Select(MapViewModel)
+                    .Select(p => MapViewModel(p))
                     .ToList(),
                 Search = query.Search
             };
         }
 
-        private static PropertyViewModel MapViewModel(Models.Property property)
+        private PropertyViewModel MapViewModel(Models.Property property)
         {
             return new PropertyViewModel
             {
@@ -46,14 +48,13 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
                 PropertyType = property.PropertyType,
-                Offer = getPropertyOffer(property)
+                Offer = GetPropertyOffer(property)
             };
         }
 
-        private static PropertyOfferViewModel getPropertyOffer(Models.Property property)
+        private PropertyOfferViewModel GetPropertyOffer(Models.Property property)
         {
-            var identityManager = new IdentityManager();
-            var userId = identityManager.GetLoggedInUserId();
+            var userId = _identityManager.GetLoggedInUserId();
             var propertyOffer = new PropertyOfferViewModel();
 
             if (property.Offers == null)
