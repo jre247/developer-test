@@ -86,7 +86,26 @@ namespace OrangeBricks.Web.Controllers.Property
         [OrangeBricksAuthorize(Roles = "Buyer")]
         public ActionResult MakeOffer(MakeOfferCommand command)
         {
-            var handler = new MakeOfferCommandHandler(_context);
+            var handler = new MakeOfferCommandHandler(_context, new IdentityManager());
+
+            handler.Handle(command);
+
+            return RedirectToAction("Index");
+        }
+
+        [OrangeBricksAuthorize(Roles = "Buyer")]
+        public ActionResult MakeAppointment(int id)
+        {
+            var builder = new MakeAppointmentViewModelBuilder(_context);
+            var viewModel = builder.Build(id);
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [OrangeBricksAuthorize(Roles = "Buyer")]
+        public ActionResult MakeAppointment(MakeAppointmentCommand command)
+        {
+            var handler = new MakeAppointmentCommandHandler(_context, new IdentityManager());
 
             handler.Handle(command);
 
