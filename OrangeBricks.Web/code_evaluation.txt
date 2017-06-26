@@ -12,5 +12,10 @@ Action Items:
 		1) Instructions explaining how to get set up as a buyer and seller. Although it is intuitive to click the Get Started button on the homepage to get started in a general sense, it's not immediately intuitive that you need to click this button in order to get set up as a buyer and seller specifically.
 	C) Project structure
 		1) A detailed breakdown of the structure of the project.
-	
+
+2) Suggested code changes:
+	A) I would create a base model class, perhaps called EntityModel, that all models can inherit from. 
+		1) This class would have common properties that all models use, such as CreatedAt and UpdatedAt.
+
+	B) I would suggest that you do not show the Make Appointment and Make Offer buttons on the  Properties page for sellers, only for buyers
 	
