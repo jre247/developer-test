@@ -118,7 +118,7 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
                             Status = OfferStatus.Accepted,
                             UpdatedAt = now,
                             Amount = 100,
-                            UserId = userId,
+                            BuyerUserId = userId,
                             Id = 1
                         }
                     }

@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201706261546115_Created Appointment model.Designer.cs">
       <DependentUpon>201706261546115_Created Appointment model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706261823533_Changed property UserId to BuyUserId in Offer model.cs" />
+    <Compile Include="Migrations\201706261823533_Changed property UserId to BuyUserId in Offer model.Designer.cs">
+      <DependentUpon>201706261823533_Changed property UserId to BuyUserId in Offer model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -353,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706261546115_Created Appointment model.resx">
       <DependentUpon>201706261546115_Created Appointment model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706261823533_Changed property UserId to BuyUserId in Offer model.resx">
+      <DependentUpon>201706261823533_Changed property UserId to BuyUserId in Offer model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -61,7 +61,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
             if (property.Offers == null)
                 return offerViewModel;
 
-            var offer = property.Offers.FirstOrDefault(o => o.UserId == userId);
+            var offer = property.Offers.FirstOrDefault(o => o.BuyerUserId == userId);
             if (offer == null)
                 return offerViewModel;
 

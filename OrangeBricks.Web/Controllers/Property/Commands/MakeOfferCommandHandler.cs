@@ -27,7 +27,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
                 Status = OfferStatus.Pending,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
-                UserId = _identityManager.GetLoggedInUserId()
+                BuyerUserId = _identityManager.GetLoggedInUserId()
             };
 
             if (property.Offers == null)
