@@ -9,12 +9,12 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
     public class MakeOfferCommandHandler
     {
         private readonly IOrangeBricksContext _context;
-        private IdentityManager _identityManager;
+        private IdentityManagerBase _identityManager;
 
-        public MakeOfferCommandHandler(IOrangeBricksContext context)
+        public MakeOfferCommandHandler(IOrangeBricksContext context, IdentityManagerBase identityManager)
         {
             _context = context;
-            _identityManager = new IdentityManager();
+            _identityManager = identityManager;
         }
 
         public void Handle(MakeOfferCommand command)
